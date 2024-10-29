@@ -6,7 +6,6 @@ from typing import Dict
 import uvicorn
 from confluent_kafka import Consumer, KafkaException
 from fastapi import FastAPI
-
 from settings.config import (BOOTSTRAP_SERVER_KAFKA, GROUP_KAFKA,
                              NAME_TOPIC_KAFKA, SLEEP_INTERVAL)
 
@@ -51,13 +50,13 @@ def consume_messages():
 
             message_value = json.loads(msg.value().decode("utf-8"))
             unique_ips.add(message_value["device_ip"])
-            logging.info(f"Received message: {message_value}")
+            logging.info("Received message: %s", message_value)
         except KafkaException as ke:
-            logging.error(f"Kafka error: {ke}")
+            logging.error("Kafka error: %s", ke)
         except json.JSONDecodeError as je:
-            logging.error(f"JSON decoding error: {je}")
+            logging.error("JSON decoding error: %s", je)
         except Exception as e:
-            logging.error(f"Error consuming messages: {e}")
+            logging.error("Error consuming messages: %s", e)
 
 
 threading.Thread(target=consume_messages, daemon=True).start()
@@ -66,7 +65,7 @@ threading.Thread(target=consume_messages, daemon=True).start()
 @app.get(
     "/api/v1/unique_ip_count",
     status_code=200,
-    response_description="Count of unique IP addresses"
+    response_description="Count of unique IP addresses",
 )
 def get_unique_ip_count():
     """

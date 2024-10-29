@@ -1,6 +1,9 @@
 import logging
 from typing import List
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+
+logging.basicConfig(
+    level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
+)
 
 
 NAME_TOPIC_KAFKA: str = "ip_tracker"
