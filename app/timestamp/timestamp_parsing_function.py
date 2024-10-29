@@ -1,18 +1,18 @@
 from datetime import datetime, timezone
 from typing import Optional, Union
 
-MILLISECONDS_IN_ONE_SECOND = 1000.0
+MILLISECONDS_IN_ONE_SECOND: float = 1000.0
 """This constant represents the number of milliseconds in one second.
 It is used to convert time values in milliseconds to their equivalent in seconds.
 """
 
-SECONDS_THRESHOLD = 10_000_000_000
+SECONDS_THRESHOLD: int = 10_000_000_000
 """This threshold value (in seconds) is used to determine if a timestamp 
 is in milliseconds or seconds. If a timestamp exceeds `SECONDS_THRESHOLD`,
 it is assumed to be in milliseconds; otherwise, it is considered to be in seconds.
 """
 
-LIST_DATES = [
+LIST_DATES: list[Union[str, int, float]] = [
     "2021-12-03T16:15:30.235Z",
     "2021-12-03T16:15:30.235",
     "2021-10-28T00:00:00.000",
