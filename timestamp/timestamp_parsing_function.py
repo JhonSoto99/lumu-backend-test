@@ -117,8 +117,10 @@ def analyze_timestamp(timestamp: Union[str, int]) -> Optional[str]:
                 timestamp = timestamp.astimezone(timezone.utc)
 
         return format_timestamp(timestamp)
+    except ValueError as e:
+        raise ValueError(f"Error converting timestamp '{timestamp}': {str(e)}") from e
     except Exception as e:
-        raise ValueError(f"Error converting timestamp {timestamp}: {e}") from e
+        raise ValueError(f"Unexpected error converting timestamp '{timestamp}': {str(e)}") from e
 
 
 if __name__ == "__main__":
